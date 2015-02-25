@@ -19,10 +19,10 @@ header
 
 nav
   position: relative // to get z-index functioning. damn css.
+  text-align: center
   z-index: 10
   margin-top: -1rem
   height: 9rem
-  font-size: 2.4rem
   background-image: url("images/texture-nav-bg.jpg")
   border-width: 1rem
   border-image: url("images/border.png") 10 10 repeat
@@ -32,7 +32,6 @@ nav
     padding: 0
     li
       display: inline-block
-      color: #EFDC5E
       background: url("images/button.gif") // button-like look
       background-repeat: no-repeat
       background-size: 19rem 10rem // a bit less than actual width
@@ -40,14 +39,16 @@ nav
       height: 5rem
       box-sizing: border-box // for not-fucking-painful-as-hell padding
       margin: 1.9rem 0.2rem
-      padding: 2rem 4rem
+      padding: 1.4rem
       &:hover
         background-position: 0 -5rem
 
 .main
-  margin-top: -6rem // for header
-  padding-top: 6rem
+  padding-top: 4rem
   padding-bottom: 1rem // for footer
+  padding-left: 5rem
+  padding-right: 5rem
+  box-sizing: border-box // lord and savior
   font-size: 1.6rem
   background: url("images/texture-content-bg.jpg")
 
@@ -55,7 +56,6 @@ footer
   background: url("images/texture-header-footer.jpg")
   height: 14rem
   padding-bottom: 1rem // yeah idk
-  font-size: 1.4rem
   .content
     display: flex
     .rit-logo
@@ -68,5 +68,5 @@ footer
     .trademark-text
       box-sizing: border-box // lord and savior
       width: 64rem
-      padding: 3.8rem 7.2rem
+      padding: 3.23rem 7.2rem
       text-align: center

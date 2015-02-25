@@ -1,4 +1,37 @@
+@import url(http://fonts.googleapis.com/css?family=Metamorphous)
+
+$metamorphous: 'Metamorphous', cursive
+$arial: 'Arial', Helvetica, sans-serif
+
 html
   +font-smoothing // <- _mixins.scss
-  font-family: sans-serif
+  font-family: $arial
   font-size: 62.5% // using rem for ALL TEH THINGS
+
+nav
+  a
+    font-family: $metamorphous
+    font-size: 2.4rem
+    color: #EFDC5E
+    font-weight: bold
+
+.main
+  font-family: $arial
+  font-size: 1.8rem
+  line-height: 2.2rem
+  a
+    color: #46617D
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+    &:visited
+      color: #5B6C7E
+  h1
+    font-family: $metamorphous
+    font-size: 3.2rem
+    font-weight: normal
+    line-height: 3.6rem
+
+footer
+  font-size: 1.4rem
+  line-height: 1.8rem
