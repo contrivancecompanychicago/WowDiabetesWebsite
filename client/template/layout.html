@@ -1,0 +1,39 @@
+<template name="layout">
+  <header>
+    <div class="contained">
+      <div class="title">
+        <img src="images/wow-logo.png" alt="World of Warcraft" class="wow-logo" />
+        <img src="images/project-logo.png" alt="Diabetes Project" class="project-logo" />
+      </div>
+    </div>
+  </header>
+  <nav class="contained">
+    <ul>
+      <a href="/"><li>About</li></a>
+      <a href="http://www.curse.com/addons/wow/wow-diabetes" target="_blank"><li>Download</li></a>
+      <a href="{{pathFor 'leaderboard'}}"><li>Leaderboard</li></a>
+      <a href="{{pathFor 'submit'}}"><li>Submit</li></a>
+    </ul>
+  </nav>
+  
+  <div class="main contained">
+    {{> yield region="content"}}
+  </div>
+  
+  <footer>
+    <div class="contained">
+      <div class="content">
+        <img src="images/rit-logo.png" alt="RIT Logo" class="rit-logo" />
+        <div class="trademark-text">
+          World of Warcraft® and Blizzard Entertainment® are all
+          trademarks or registered trademarks of Blizzard
+          Entertainment in the United States and/or other countries.
+          These terms and all related materials, logos, and images
+          are copyright © Blizzard Entertainment. This site is in no
+          way associated with or endorsed by Blizzard
+          Entertainment®.
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>

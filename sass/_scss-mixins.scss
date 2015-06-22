@@ -1,0 +1,14 @@
+@mixin font-smoothing {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin cf()
+{
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {clear: both;}
+}

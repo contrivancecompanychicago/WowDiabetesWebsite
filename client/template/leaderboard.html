@@ -1,0 +1,29 @@
+<template name="leaderboard">
+
+  <div class="leaderboard wrapper">
+    <div class="header">
+      <h1 class="title">Leaderboards</h1>
+      <div class="row-titles">
+        <span class="rank">#</span>
+        <span class="name">Name</span>
+        <span class="score">Score</span>
+      </div>
+    </div>
+    <div class="table">
+      {{#each rows}}
+        {{> row}}
+      {{/each}}
+    </div>
+  </div>
+
+</template>
+
+
+<template name="row">
+  <div class="row">
+    <span class="rank">{{rank}}</span>
+    <img class="portrait" src="{{portrait}}" alt="{{name}}" />
+    <span class="name">{{name}}</span>
+    <span class="score">{{timeGood}}</span>
+  </div>
+</template>
