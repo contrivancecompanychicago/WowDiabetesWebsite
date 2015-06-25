@@ -48,7 +48,7 @@ Template.submit.events({
         insulin: arr[6],
         insulinUsed: arr[7],
         foodEaten: arr[8],
-        portrait: "images/stevej.png",
+        portrait: "images/stevej.png", // TODO get portrait from armory api
         createdAt: new Date() // current time
       });
     }
