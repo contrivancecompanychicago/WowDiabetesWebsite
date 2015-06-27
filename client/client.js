@@ -38,19 +38,29 @@ Template.submit.events({
       );
       
     } else {
-      Players.insert({
-        name: arr[0],
-        region: arr[1],
-        server: arr[2],
-        timeGood: arr[3],
-        totalTime: arr[4],
-        glucoseLevel: arr[5],
-        insulin: arr[6],
-        insulinUsed: arr[7],
-        foodEaten: arr[8],
-        portrait: "images/stevej.png", // TODO get portrait from armory api
-        createdAt: new Date() // current time
-      });
+        var apiKey = "keppgsca9m2af6fnkj4ta5vppb5v3u79";
+        var apiUrl = "https://us.api.battle.net/wow/character/" + arr[2] + "/" + arr[0] + "?locale=en_US&apikey=" + apiKey;
+        var toonJSON = new HTTP.call( "GET", apiUrl, function(err, result)
+        {
+            console.log(err)
+          if(!err){
+          var thumbnail = "http://us.battle.net/static-render/us/" + result.data.thumbnail;
+          Players.insert({
+          name: arr[0],
+          region: arr[1],
+          server: arr[2],
+          timeGood: arr[3],
+          totalTime: arr[4],
+          glucoseLevel: arr[5],
+          insulin: arr[6],
+          insulinUsed: arr[7],
+          foodEaten: arr[8],
+          portrait: thumbnail,
+          createdAt: new Date() // current time
+          });
+          }
+        });
+      
     }
     
     // Sort according to timeGood 
