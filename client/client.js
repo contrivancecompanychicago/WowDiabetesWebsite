@@ -42,7 +42,6 @@ Template.submit.events({
         var apiUrl = "https://us.api.battle.net/wow/character/" + arr[2] + "/" + arr[0] + "?locale=en_US&apikey=" + apiKey;
         var toonJSON = new HTTP.call( "GET", apiUrl, function(err, result)
         {
-            console.log(err)
           if(!err){
           var thumbnail = "http://us.battle.net/static-render/us/" + result.data.thumbnail;
           Players.insert({
