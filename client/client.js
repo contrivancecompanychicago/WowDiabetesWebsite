@@ -4,6 +4,14 @@ Template.leaderboard.helpers({
   }
 });
 
+Template.submit.helpers({
+  playerInfo: function() {  
+    console.log(PlayerInfo);
+    //return Players.find({PlayerInfo});
+    return PlayerInfo;
+  }
+});
+
 Template.submit.events({
   "submit .submit": function (event) {
     console.log("submit");
@@ -39,11 +47,21 @@ Template.submit.events({
       
     } else {
         var apiKey = "keppgsca9m2af6fnkj4ta5vppb5v3u79";
-        var apiUrl = "https://us.api.battle.net/wow/character/" + arr[2] + "/" + arr[0] + "?locale=en_US&apikey=" + apiKey;
+        var apiUrl;
+        var thumbnailUrl;
+        switch(arr[1]){
+          case "US":
+            apiUrl = "https://us.api.battle.net/wow/character/" + arr[2] + "/" + arr[0] + "?locale=en_US&apikey=" + apiKey;
+            thumbnailUrl = "http://us.battle.net/static-render/us/";
+            break;
+          case "EU":
+            apiUrl = "https://eu.api.battle.net/wow/character/" + arr[2] + "/" + arr[0] + "?locale=en_GB&apikey=" + apiKey;
+            thumbnailUrl = "http://eu.battle.net/static-render/eu/";
+            break;
+        }
         var toonJSON = new HTTP.call( "GET", apiUrl, function(err, result)
         {
           if(!err){
-          var thumbnail = "http://us.battle.net/static-render/us/" + result.data.thumbnail;
           Players.insert({
           name: arr[0],
           region: arr[1],
@@ -54,8 +72,9 @@ Template.submit.events({
           insulin: arr[6],
           insulinUsed: arr[7],
           foodEaten: arr[8],
-          portrait: thumbnail,
-          createdAt: new Date() // current time
+          portrait: thumbnailUrl + result.data.thumbnail,
+          createdAt: new Date(), // current time
+          info: arr.join()
           });
           }
         });
@@ -68,6 +87,29 @@ Template.submit.events({
     // Clear form
     event.target.text.value = "";
     Router.go('leaderboard');
+    // Prevent default form submit
+    return false;
+  },
+  "submit .search": function(event){
+    console.log("search");
+    var nameSearch = event.target.name.value;
+    var serverSearch = event.target.server.value;
+    var regionSearch = event.target.region.value;
+    if(!nameSearch || serverSearch == "") return;
+    var player = Players.findOne({
+      name: nameSearch,
+      region: regionSearch,
+      server: serverSearch
+    });
+    if(player){
+      PlayerInfo = player._id;
+      //console.log(PlayerInfo);
+      playerInfo.info.value = player.info;
+    }
+    // Clear form
+    event.target.name.value = "";
+    event.target.server.value = "";
+    event.target.region.value = "US";
     // Prevent default form submit
     return false;
   }
